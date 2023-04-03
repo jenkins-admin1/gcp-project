@@ -21,10 +21,7 @@ inputs = {
   labels = {
     environment = local.environment
     app_short_name = local.app_short_name
-  },
-  local,
-  {
-    project_name = "${local.environment}-${local.app_short_name}"
-    project_id_prefix = "${local.environment}-${local.app_short_name}"
   }
+  project_name = "${local.environment}-${local.app_short_name}"
+  project_id_prefix = "${local.environment}-${local.app_short_name}"
 }
