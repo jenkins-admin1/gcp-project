@@ -1,5 +1,6 @@
 locals {
   project_name = lower(format("prj-%s-%s-%s", var.environment, var.app_short_name, random_string.suffix.result))
+  service_account_id = "${google_project.project.number}@${google_project.project.project_id}.iam.gserviceaccount.com"
 }
 
 resource "google_project" "project" {
@@ -18,6 +19,12 @@ resource "google_project_service" "enable_services" {
   disable_dependent_services = true
 }
 
+resource "google_service_account" "service_account" {
+  account_id   = local.service_account_id
+  display_name = "default service account"
+  project = google_project.project.project_id
+}
+
 resource "google_project_iam_binding" "owner" {
   project = google_project.project.project_id
   role    = "roles/owner"
@@ -25,6 +32,15 @@ resource "google_project_iam_binding" "owner" {
   members = [
     "user:${var.owner_email}",
     "group:${var.owner_group_email}",
+  ]
+}
+
+resource "google_project_iam_binding" "compute_admin" {
+  project = google_project.project.project_id
+  role    = "roles/compute.admin"
+
+  members = [
+    "serviceAccount:${google_service_account.service_account.email}",
   ]
 }
 
