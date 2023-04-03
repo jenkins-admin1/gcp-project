@@ -12,6 +12,7 @@ locals {
 
 inputs = {
   environment = "dev"
+  folder_id = var.folder_id["dev"]  # Replace "dev" with "qa" as needed
   app_short_name = "app1"
   owner_email = "app1-admin@markroofing.com"
   owner_group_email = "app1admin@markroofing.com"
@@ -24,5 +25,4 @@ inputs = {
   }
   project_name = "${local.environment}-${local.app_short_name}"
   project_id_prefix = "${local.environment}-${local.app_short_name}"
-  folder_name = "dev"
 }

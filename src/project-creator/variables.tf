@@ -3,9 +3,12 @@ variable "environment" {
   default     = "dev"
 }
 
-variable "folder_name" {
-  description = "The folder in which project is created and is equivalent to environment"
-  default     = ""
+variable "folder_id" {
+  type = map(string)
+  default = {
+    "dev" = "285135843"
+    "qa"  = "838855663572"
+  }
 }
 
 variable "app_short_name" {

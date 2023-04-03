@@ -1,10 +1,9 @@
 locals {
   project_id = "${var.project_id_prefix}-${substr(md5(random_string.random.hex), 0, 8)}"
-  folder_name = var.folder_name
 }
 
 data "google_folder" "folder" {
-  display_name = local.folder_name
+  folder_id = var.folder_id
 }
 
 resource "google_project" "project" {
@@ -13,7 +12,7 @@ resource "google_project" "project" {
   labels     = var.labels
   org_id = var.organization_id
   billing_account = var.billing_account_id
-  folder_id        = data.google_folder.folder.id
+  folder_id        = data.google_folder.folder.folder_id
 }
 
 resource "google_project_services" "enable_services" {
