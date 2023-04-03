@@ -3,6 +3,11 @@ variable "environment" {
   default     = "dev"
 }
 
+variable "folder_name" {
+  description = "The folder in which project is created"
+  default     = var.environment == "dev" ? "dev" : "qa"
+}
+
 variable "app_short_name" {
   description = "The short name of the application"
   default     = "app1"
