@@ -27,6 +27,12 @@ variable "default_region" {
   default = "us-central1"
 }
 
+variable "activate_apis" {
+  description = "The list of apis to be activated within the project"
+  type = list(string)
+  default     = ["compute.googleapis.com"]
+}
+
 variable "org_id" {
   description = "The ID of the organization in which to create the project"
 }

@@ -13,13 +13,10 @@ resource "google_project" "project" {
 
 resource "google_project_service" "enable_services" {
   project  = google_project.project.project_id
-  service  = [
-    "compute.googleapis.com",
-    "cloudresourcemanager.googleapis.com",
-    "iam.googleapis.com",
-    "cloudapis.googleapis.com",
-    "cloudtrace.googleapis.com"
-  ]
+  for_each = toset(var.activate_apis)
+  service = each.value
+  disable_on_destroy = true
+  disable_dependent_services = true
 }
 
 resource "google_project_iam_binding" "owner" {
