@@ -1,9 +1,21 @@
+variable "environment" {
+  description = "The environment name"
+  default     = "dev"
+}
+
+variable "app_short_name" {
+  description = "The short name of the application"
+  default     = "app1"
+}
+
 variable "project_name" {
   description = "The name of the project"
+  default     = "${var.environment}-${var.app_short_name}"
 }
 
 variable "project_id_prefix" {
-  description = "A prefix to prepend to the generated project ID"
+  description = "The prefix for the project ID"
+  default     = "${var.environment}-${var.app_short_name}"
 }
 
 variable "organization_id" {
