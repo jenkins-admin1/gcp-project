@@ -11,7 +11,7 @@ resource "google_project" "project" {
   folder_id        = var.folder_id[var.environment]
 }
 
-resource "google_project_services" "enable_services" {
+resource "google_project_service" "enable_services" {
   project  = google_project.project.project_id
   services = [
     "compute.googleapis.com",
@@ -38,7 +38,7 @@ resource "random_string" "suffix" {
   min_numeric = 4
   min_special = 0
   min_upper = 0
-  number = true
+  numeric = true
   lower = false
   upper = false
   special = false
