@@ -1,5 +1,5 @@
 terraform {
-  source = "git::https://github.com/jenkins-admin1/gcp-project/tree/master/src/project-creator"
+  source = "../../../../../src/project-creator"
 }
 
 /*
