@@ -1,6 +1,6 @@
 locals {
   project_name = lower(format("prj-%s-%s-%s", var.environment, var.app_short_name, random_string.suffix.result))
-  service_account_id = "${google_project.project.number}@${google_project.project.project_id}.iam.gserviceaccount.com"
+  service_account_id = "${google_project.project.number}"
 }
 
 resource "google_project" "project" {
