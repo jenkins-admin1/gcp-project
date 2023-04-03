@@ -13,7 +13,7 @@ resource "google_project" "project" {
 
 resource "google_project_service" "enable_services" {
   project  = google_project.project.project_id
-  services = [
+  service  = [
     "compute.googleapis.com",
     "cloudresourcemanager.googleapis.com",
     "iam.googleapis.com",
