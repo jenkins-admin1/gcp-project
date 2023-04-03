@@ -1,6 +1,6 @@
 locals {
   project_name = lower(format("prj-%s-%s-%s", var.environment, var.app_short_name, random_string.suffix.result))
-  service_account_id = "${google_project.project.number}"
+  service_account_id = lower(format("%s-%s", var.app_short_name, random_string.service_account_id.result))
 }
 
 resource "google_project" "project" {
@@ -45,6 +45,18 @@ resource "google_project_iam_binding" "compute_admin" {
 }
 
 resource "random_string" "suffix" {
+  length  = 4
+  min_lower = 0
+  min_numeric = 4
+  min_special = 0
+  min_upper = 0
+  numeric = true
+  lower = false
+  upper = false
+  special = false
+}
+
+resource "random_string" "service_account_id" {
   length  = 4
   min_lower = 0
   min_numeric = 4
