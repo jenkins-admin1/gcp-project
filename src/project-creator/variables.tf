@@ -13,7 +13,6 @@ variable "folder_id" {
 
 variable "app_short_name" {
   description = "The short name of the application"
-  default     = "app1"
 }
 
 variable "project_name" {

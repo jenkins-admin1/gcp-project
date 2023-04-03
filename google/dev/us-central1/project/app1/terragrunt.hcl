@@ -17,9 +17,7 @@ inputs = {
     "storage-component.googleapis.com" = "cloud storage"
   }
   labels = {
-    environment = local.environment
-    app_short_name = local.app_short_name
+    environment = "dev"
+    contact_name = "platform_team"
   }
-  project_name = "${local.environment}-${local.app_short_name}"
-  project_id_prefix = "${local.environment}-${local.app_short_name}"
 }
