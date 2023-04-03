@@ -24,5 +24,5 @@ inputs = {
   }
   project_name = "${local.environment}-${local.app_short_name}"
   project_id_prefix = "${local.environment}-${local.app_short_name}"
-  folder_name = local.folder_name
+  folder_name = "dev"
 }

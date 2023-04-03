@@ -3,6 +3,11 @@ variable "environment" {
   default     = "dev"
 }
 
+variable "folder_name" {
+  description = "The folder in which project is created and is equivalent to environment"
+  default     = ""
+}
+
 variable "app_short_name" {
   description = "The short name of the application"
   default     = "app1"
