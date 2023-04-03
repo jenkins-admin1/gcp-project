@@ -21,7 +21,7 @@ resource "google_project_service" "enable_services" {
 
 resource "google_service_account" "service_account" {
   account_id   = local.service_account_id
-  display_name = "default service account"
+  display_name = ""
   project = google_project.project.project_id
 }
 
