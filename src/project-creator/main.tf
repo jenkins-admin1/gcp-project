@@ -6,8 +6,8 @@ resource "google_project" "project" {
   name             = local.project_name
   project_id       = var.project_id
   labels           = var.labels
-  org_id           = var.organization_id
-  billing_account  = var.billing_account_id
+  org_id           = var.org_id
+  billing_account  = var.billing_account
   folder_id        = var.folder_id[var.environment]
 }
 

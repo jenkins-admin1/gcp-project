@@ -22,11 +22,16 @@ variable "project_id" {
   default     = ""
 }
 
-variable "organization_id" {
+variable "default_region" {
+  type    = string
+  default = "us-central1"
+}
+
+variable "org_id" {
   description = "The ID of the organization in which to create the project"
 }
 
-variable "billing_account_id" {
+variable "billing_account" {
   description = "The ID of the billing account to associate with the project"
 }
 
