@@ -13,16 +13,13 @@ variable "folder_id" {
 
 variable "app_short_name" {
   description = "The short name of the application"
+  type = string
 }
 
-variable "project_name" {
-  description = "The name of the project"
-  default     = "${var.environment}-${var.app_short_name}"
-}
-
-variable "project_id_prefix" {
-  description = "The prefix for the project ID"
-  default     = "${var.environment}-${var.app_short_name}"
+variable "project_id" {
+  description = "The prefix for the project ID, if not provided 'name' will be used"
+  type = string
+  default     = ""
 }
 
 variable "organization_id" {

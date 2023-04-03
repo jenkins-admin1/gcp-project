@@ -1,10 +1,10 @@
 locals {
-  project_id = "${var.project_id_prefix}-${substr(md5(random_string.random.hex), 0, 8)}"
+  project_name = lower(format("prj-%s-%s-%s", var.environment, var.app_short_name, random_string.suffix.result))
 }
 
 resource "google_project" "project" {
-  name             = var.project_name
-  project_id       = local.project_id
+  name             = local.project_name
+  project_id       = var.project_id
   labels           = var.labels
   org_id           = var.organization_id
   billing_account  = var.billing_account_id
@@ -32,7 +32,14 @@ resource "google_project_iam_binding" "owner" {
   ]
 }
 
-resource "random_string" "random" {
-  length  = 8
+resource "random_string" "suffix" {
+  length  = 4
+  min_lower = 0
+  min_numeric = 4
+  min_special = 0
+  min_upper = 0
+  number = true
+  lower = false
+  upper = false
   special = false
 }
