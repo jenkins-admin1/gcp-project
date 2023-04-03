@@ -14,7 +14,7 @@ pipeline {
         stage('initialize') 
         {
             steps {
-                sh "cd /var/lib/jenkins/workspace/gcp-project/${params.provider}/${params.environment}/${params.region}/${params.resource_to_deploy}/${params.application_name} && terragrunt init --terragrunt-working-dir /var/lib/jenkins/workspace/gcp-project/${params.provider}/${params.environment}/${params.region}/${params.resource_to_deploy}/${params.application_name} --terragrunt-source-update --terragrunt-non-interactive --terragrunt-log-level INFO --terragrunt-inputs-file /var/lib/jenkins/workspace/gcp-project/${params.provider}/${params.environment}/${params.region}/${params.resource_to_deploy}/${params.application_name}/terragrunt.hcl"
+                sh "cd /var/lib/jenkins/workspace/gcp-project/${params.provider}/${params.environment}/${params.region}/${params.resource_to_deploy}/${params.application_name} && terragrunt init"
                 }
         }
         

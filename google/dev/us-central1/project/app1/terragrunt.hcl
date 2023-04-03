@@ -1,5 +1,5 @@
 terraform {
-  source = "../../../../../src/project-creator"
+  source = "../../../../..//src//project-creator"
 }
 
 /*
