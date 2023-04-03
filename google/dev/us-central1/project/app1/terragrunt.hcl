@@ -1,11 +1,11 @@
 terraform {
   source = "../../../../../src/project-creator"
 }
-
+/*
 include {
   path = find_in_parent_folders()
 }
-
+*/
 locals {
   folder_name = local.environment == "dev" ? "dev" : "qa"
 }
