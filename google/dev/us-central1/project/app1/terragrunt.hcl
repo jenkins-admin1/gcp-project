@@ -1,14 +1,13 @@
 terraform {
-  source = "../../../../../src/project-creator"
+  source = "git::https://github.com/jenkins-admin1/gcp-project/tree/master/src/project-creator"
 }
-/*
+
 include {
   path = find_in_parent_folders()
 }
-*/
+
 inputs = {
   environment = "dev"
-  folder_id = var.folder_id[local.environment]  # Replace "dev" with "qa" as needed
   app_short_name = "app1"
   owner_email = "app1-admin@markroofing.com"
   owner_group_email = "app1admin@markroofing.com"
