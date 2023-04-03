@@ -8,7 +8,7 @@ include {
 */
 inputs = {
   environment = "dev"
-  folder_id = var.folder_id["dev"]  # Replace "dev" with "qa" as needed
+  folder_id = var.folder_id[local.environment]  # Replace "dev" with "qa" as needed
   app_short_name = "app1"
   owner_email = "app1-admin@markroofing.com"
   owner_group_email = "app1admin@markroofing.com"
