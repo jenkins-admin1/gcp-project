@@ -22,9 +22,9 @@ variable "default_region" {
 }
 
 variable "activate_apis" {
-  description = "The list of apis to be activated within the project"
+  description = "The list of additional apis to be activated within the project"
   type = list(string)
-  default     = ["compute.googleapis.com"]
+  default     = [""]
 }
 
 variable "org_id" {

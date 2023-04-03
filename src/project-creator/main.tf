@@ -13,7 +13,7 @@ resource "google_project" "project" {
 
 resource "google_project_service" "enable_services" {
   project  = google_project.project.project_id
-  for_each = toset(var.activate_apis)
+  for_each = toset(concat(["compute.googleapis.com", "iam.googleapis.com"], var.activate_apis))
   service = each.value
   disable_on_destroy = true
   disable_dependent_services = true
