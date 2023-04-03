@@ -1,5 +1,5 @@
 variable "environment" {
-  description = "The environment name"
+  description = "The environment name = 'dev, qa'"
   type        = string
 }
 
@@ -14,12 +14,6 @@ variable "folder_id" {
 variable "app_short_name" {
   description = "The short name of the application"
   type = string
-}
-
-variable "project_id" {
-  description = "The prefix for the project ID, if not provided 'name' will be used"
-  type = string
-  default     = ""
 }
 
 variable "default_region" {
