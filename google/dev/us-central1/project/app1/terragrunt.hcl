@@ -6,10 +6,6 @@ include {
   path = find_in_parent_folders()
 }
 */
-locals {
-  folder_name = local.environment == "dev" ? "dev" : "qa"
-}
-
 inputs = {
   environment = "dev"
   folder_id = var.folder_id["dev"]  # Replace "dev" with "qa" as needed
