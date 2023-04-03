@@ -1,10 +1,10 @@
 variable "environment" {
   description = "The environment name"
-  type = string
+  type        = string
 }
 
 variable "folder_id" {
-  type = map(any)
+  type    = map(any)
   default = {
     "dev" = "285135843"
     "qa"  = "838855663572"

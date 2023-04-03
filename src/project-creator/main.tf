@@ -3,16 +3,16 @@ locals {
 }
 
 resource "google_project" "project" {
-  name       = var.project_name
-  project_id = local.project_id
-  labels     = var.labels
-  org_id = var.organization_id
-  billing_account = var.billing_account_id
+  name             = var.project_name
+  project_id       = local.project_id
+  labels           = var.labels
+  org_id           = var.organization_id
+  billing_account  = var.billing_account_id
   folder_id        = var.folder_id[var.environment]
 }
 
 resource "google_project_services" "enable_services" {
-  project = google_project.project.project_id
+  project  = google_project.project.project_id
   services = [
     "compute.googleapis.com",
     "cloudresourcemanager.googleapis.com",
