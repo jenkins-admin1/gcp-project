@@ -2,9 +2,11 @@ terraform {
   source = "git::https://github.com/jenkins-admin1/gcp-project/tree/master/src/project-creator"
 }
 
+/*
 include {
   path = find_in_parent_folders()
 }
+*/
 
 inputs = {
   environment = "dev"
