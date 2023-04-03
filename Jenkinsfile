@@ -14,21 +14,21 @@ pipeline {
         stage('initialize') 
         {
             steps {
-                sh "cd /var/lib/jenkins/workspace/gcp-project/${params.provider}/${params.environment}/${params.region} && terragrunt init"
+                sh "cd /var/lib/jenkins/workspace/gcp-project/${params.provider}/${params.environment}/${params.region}/${params.resource to deploy}/${params.application name} && terragrunt init"
                 }
         }
         
         stage('validate') 
         {
             steps {
-                sh "cd /var/lib/jenkins/workspace/gcp-project/${params.provider}/${params.environment}/${params.region} && terragrunt plan"
+                sh "cd /var/lib/jenkins/workspace/gcp-project/${params.provider}/${params.environment}/${params.region}/${params.resource to deploy}/${params.application name} && terragrunt plan"
                 }
         }
         
         stage('apply') 
         {
             steps {
-                sh "cd /var/lib/jenkins/workspace/gcp-project/${params.provider}/${params.environment}/${params.region} && terragrunt ${params.action} --auto-approve"
+                sh "cd /var/lib/jenkins/workspace/gcp-project/${params.provider}/${params.environment}/${params.region}/${params.resource to deploy}/${params.application name} && terragrunt ${params.action} --auto-approve"
                 }
         }
     }
