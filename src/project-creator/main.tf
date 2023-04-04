@@ -19,6 +19,11 @@ resource "google_project_service" "enable_services" {
   disable_dependent_services = true
 }
 
+resource "time_sleep" "wait_time" {
+  depends_on = [google_project_service.enable_services]
+  create_duration = "180s"
+}
+
 resource "google_project_iam_binding" "owner" {
   project = google_project.project.project_id
   role    = "roles/owner"
