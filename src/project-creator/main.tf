@@ -1,6 +1,6 @@
 locals {
   project_name = lower(format("prj-%s-%s-%s", var.environment, var.app_short_name, random_string.suffix.result))
-  #service_account_id = lower(format("%s-%s", var.app_short_name, random_string.service_account_id.result))
+  service_account_id = lower(format("%s-%s", var.app_short_name, random_string.service_account_id.result))
 }
 
 resource "google_project" "project" {
@@ -18,13 +18,7 @@ resource "google_project_service" "enable_services" {
   disable_on_destroy = true
   disable_dependent_services = true
 }
-/*
-resource "google_service_account" "service_account" {
-  account_id   = local.service_account_id
-  display_name = ""
-  project = google_project.project.project_id
-}
-*/
+
 resource "google_project_iam_binding" "owner" {
   project = google_project.project.project_id
   role    = "roles/owner"
@@ -34,7 +28,13 @@ resource "google_project_iam_binding" "owner" {
     "group:${var.owner_group_email}",
   ]
 }
-/*
+
+resource "google_service_account" "service_account" {
+  account_id   = local.service_account_id
+  display_name = ""
+  project = google_project.project.project_id
+}
+
 resource "google_project_iam_binding" "compute_admin" {
   project = google_project.project.project_id
   role    = "roles/compute.admin"
@@ -43,7 +43,7 @@ resource "google_project_iam_binding" "compute_admin" {
     "serviceAccount:${google_service_account.service_account.email}",
   ]
 }
-*/
+
 resource "random_string" "suffix" {
   length  = 4
   min_lower = 0
@@ -55,7 +55,7 @@ resource "random_string" "suffix" {
   upper = false
   special = false
 }
-/*
+
 resource "random_string" "service_account_id" {
   length  = 4
   min_lower = 0
@@ -67,4 +67,3 @@ resource "random_string" "service_account_id" {
   upper = false
   special = false
 }
-*/
