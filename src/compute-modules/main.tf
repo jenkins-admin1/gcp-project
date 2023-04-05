@@ -3,8 +3,7 @@ locals {
   domain_password = var.domain_password
   domain_name = var.domain_name
   domain_ou_path = var.domain_ou_path
-  service_account_id = lower(format("%s-%s", var.app_short_name, random_string.service_account_id.result))
-
+  
   labels_mandatory = {
     app_name = var.labels.app_name
     department_name = var.labels.department_name
@@ -13,11 +12,24 @@ locals {
   }
 }
 
-data "google_service_account" "compute_service_account" {
-  account_id = "my-service-account-id"
-  project    = var.project_id
+data "google_service_accounts" "my_service_accounts" {
+  project = var.project_id
 }
 
+data "google_service_account" "my_service_account" {
+  count = length(data.google_service_accounts.my_service_accounts.service_accounts)
+
+  account_id = data.google_service_accounts.my_service_accounts.service_accounts[count.index].unique_id
+  project    = var.project_id
+
+  filter {
+    display_name = "compute-sa"
+  }
+}
+
+data "google_project" "project" {
+  project = var.project_id
+}
 
 # Create the VM instances
 resource "google_compute_instance" "vm" {
@@ -43,17 +55,4 @@ resource "google_compute_instance" "vm" {
 
   # Join the VM to the Active Directory domain
   metadata_startup_script = var.vms[count.index].startup_script
-}
-
-//random string for service account id
-resource "random_string" "service_account_id" {
-  length  = 4
-  min_lower = 0
-  min_numeric = 4
-  min_special = 0
-  min_upper = 0
-  numeric = true
-  lower = false
-  upper = false
-  special = false
 }
