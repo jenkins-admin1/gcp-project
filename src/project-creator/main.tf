@@ -42,7 +42,7 @@ resource "google_project_iam_binding" "owner" {
 //creating new service account with app-short-name
 resource "google_service_account" "service_account" {
   account_id   = local.service_account_id
-  display_name = ""
+  display_name = "compute-sa"
   project = google_project.project.project_id
 }
 
