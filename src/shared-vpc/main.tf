@@ -1,7 +1,7 @@
 # Create a VPC network
 resource "google_compute_network" "vpc_network" {
   name                    = var.vpc_name
-  auto_create_subnetworks = "false"
+  auto_create_subnetworks = false
 }
 
 # Create a firewall rule to allow all ingress traffic within the VPC
@@ -34,18 +34,18 @@ resource "google_compute_subnetwork" "vpc_subnet" {
   ip_cidr_range            = var.subnet_ip_cidr_range
   network                  = google_compute_network.vpc_network.name
   region                   = "us-central1"
-  private_ip_google_access = "true"
+  private_ip_google_access = true
 }
 
 # Create a VPC Peering connection to the shared VPC
 resource "google_compute_network_peering" "vpc_peering" {
   name                    = var.peering_name
-  auto_create_routes      = "false"
+  auto_create_routes      = false
   peer_network            = var.peer_network_name
   network                 = google_compute_network.vpc_network.name
-  exchange_subnet_routes = "true"
-  export_custom_routes    = "false"
-  import_custom_routes    = "false"
+  exchange_subnet_routes = true
+  export_custom_routes    = false
+  import_custom_routes    = false
 }
 
 # Output the network name and subnet name for reference
