@@ -1,7 +1,7 @@
 //defining the source module for the terragrunt file
 module "gcp-project" {
   source  = "app.terraform.io/tf-cloud-testing1213/gcp-project/google"
-  version = "0.0.1"
+  version = "0.0.2"
   environment = "dev" //dev, qa are acceptable values
   app_short_name = "app1" //should not be more than 5 characters
   owner_email = "app1-admin@markroofing.com" //project owner email id
